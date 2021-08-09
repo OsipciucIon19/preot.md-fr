@@ -36,9 +36,9 @@
 <script>
   import AppContent from "./components/AppContent";
   import AppBar from "./components/AppBar";
-  import RightSideContent from "./components/RightSideContent";
+  import Categories from "./components/Categories";
 
   export default {
-    components: {RightSideContent, AppBar, AppContent},
+    components: {RightSideContent: Categories, AppBar, AppContent},
   }
 </script>
