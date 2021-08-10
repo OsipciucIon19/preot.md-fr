@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import  Vue from 'vue'
 import Vuex from 'vuex'
 import * as modules from './modules'
 import createPersistedState from "vuex-persistedstate";

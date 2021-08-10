@@ -1,19 +1,8 @@
 <template>
-    <v-col cols="2">
-        <v-divider class="my-5"/>
+    <v-col>
         <v-sheet rounded="lg">
             <v-list color="transparent">
-                <v-list-item
-                        color="grey lighten-4"
-                >
-                    <v-list-item-content>
-                        <v-list-item-title>
-                            Category
-                        </v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
-
-                <v-divider class="my-3"/>
+                <v-divider class=""/>
                 <v-progress-linear
                         v-if="$store.getters['categories/getIsLoading']"
                         indeterminate
@@ -39,6 +28,7 @@
                                         <v-list-item-content>
                                             <v-list-item-title class="text-wrap">
                                                 <router-link
+                                                        class="child-link"
                                                         :to="{href:'/products', query: {link: linkChild.link}}"
                                                 >
                                                     {{ linkChild.name }}
@@ -67,5 +57,9 @@
 </script>
 
 <style scoped>
+
+    .child-link {
+        text-decoration: none;
+    }
 
 </style>

@@ -5,8 +5,8 @@
       <v-container>
         <v-row>
           <v-col
-                  cols="12"
-                  sm="10"
+                  cols="9"
+                  sm="9"
           >
             <v-sheet
                     min-height="70vh"
@@ -17,14 +17,14 @@
           </v-col>
 
           <v-col
-                  cols="12"
-                  sm="2"
+                  cols="3"
+                  sm="3"
           >
             <v-sheet
                     rounded="lg"
                     min-height="268"
             >
-              <RightSideContent/>
+              <Categories/>
             </v-sheet>
           </v-col>
         </v-row>
@@ -39,6 +39,6 @@
   import Categories from "./components/Categories";
 
   export default {
-    components: {RightSideContent: Categories, AppBar, AppContent},
+    components: {Categories, AppBar, AppContent},
   }
 </script>

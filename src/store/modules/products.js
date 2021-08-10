@@ -1,28 +1,34 @@
 export default {
     namespaced: true,
     state: {
-        list: {},
+        list: [],
         isLoading: false
+
     },
     getters: {
-        getList: (state) => state.list,
-        getIsLoading: (state) => state.isLoading
+        getIsLoading(state) {
+            return state.isLoading;
+        },
+        getList(state) {
+            return state.list;
+        }
+
     },
     actions: {
-        async loadProducts(store, payload) {
+        async loadProducts(store, {link, page}) {
             store.commit('mutateIsLoading', true);
-            const result = await fetch(`/api/products?link=${payload}`);
-            store.commit('mutateList', await result.json());
+            const products = await fetch(`/api/products?link=${link}?page=${page}`);
+            store.commit('mutateList', await products.json());
             store.commit('mutateIsLoading', false);
         },
 
     },
     mutations: {
+        mutateList(state, payload) {
+            state.list = payload;
+        },
         mutateIsLoading(state, payload) {
             state.isLoading = payload;
-        },
-        mutateList(state, payload) {
-            state.list = payload
-        },
+        }
     }
 }
