@@ -7,10 +7,18 @@
             link
             :to="link.route"
     >
-        <v-img
-                height="250"
-                :src="item.img[0]"
-        />
+        <div v-if="item.img.length === 0 || item.img[0].endsWith('.gif')">
+            <v-img
+                    height="250"
+                    src="../../assets/defaultImg.jpg"
+            />
+        </div>
+        <div v-else>
+            <v-img
+                    height="250"
+                    :src="item.img[0]"
+            />
+        </div>
 
         <v-card-title>{{ item.title }}</v-card-title>
 
@@ -33,10 +41,9 @@
                 {{ item.currency }} {{ item.price }}
             </div>
 
-<!--            <div> {{ // item.description.substring(0, 150) }}</div>-->
         </v-card-text>
 
-        <v-divider class="mx-4" />
+        <v-divider class="mx-4"/>
 
         <v-card-actions>
             <v-btn
@@ -61,7 +68,7 @@
         props: {
             item: {
                 required: true,
-                type:Object
+                type: Object
             }
         },
         data: () => ({
@@ -72,15 +79,14 @@
             }
         }),
         methods: {},
-        // mounted() {
-        //     if (!this.$store.getters['products/getList'].length)
-        //         // this.$store.dispatch('products/');
-        // }
     }
 </script>
 
 <style scoped>
     .v-card__title {
-        height: 100px;
+        padding-top: 10px;
+        height: 80px;
+        overflow: hidden;
+        text-overflow:ellipsis;
     }
 </style>

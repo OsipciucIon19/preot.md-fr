@@ -1,7 +1,7 @@
 <template>
   <v-app id="inspire">
     <AppBar/>
-    <v-main class="grey lighten-3">
+    <v-main class="lighten-3">
       <v-container>
         <v-row>
           <v-col

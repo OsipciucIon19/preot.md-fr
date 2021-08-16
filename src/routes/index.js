@@ -6,6 +6,7 @@ import Contacts from "../components/pages/Contacts";
 import Cart from "../components/pages/Cart";
 import Settings from "../components/pages/Settings";
 import Profile from "../components/pages/Profile";
+import ProductDetails from "../components/pages/ProductDetails";
 
 Vue.use(VueRouter);
 
@@ -17,6 +18,7 @@ const routes = [
     {path: '/cart', component: Cart},
     {path: '/settings', component: Settings},
     {path: '/profile', component: Profile},
+    {path: '/details', component: ProductDetails},
 ];
 
 const router = new VueRouter({

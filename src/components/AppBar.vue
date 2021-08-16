@@ -1,9 +1,9 @@
 <template>
     <v-app-bar
             app
-            color="white"
             flat
     >
+
         <v-avatar
                 :color="$vuetify.breakpoint.smAndDown ? 'grey darken-1' : 'transparent'"
                 size="32"
@@ -22,6 +22,12 @@
                 {{ link.title }}
             </v-tab>
         </v-tabs>
+
+        <Search
+                :search-value="inputData"
+                @submitInput="onEnterPress"
+                @changeInput="inputData = $event"
+        />
 
         <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
@@ -49,15 +55,29 @@
                 >
                     <v-list-item-title>{{ item.title }}</v-list-item-title>
                 </v-list-item>
+                <v-list-item>
+                    <v-switch
+                            v-model="isDarkModeEnabled"
+                            :value="$vuetify.theme.dark"
+                            label="Dark mode"
+                            @change="changeDarkMode()"
+                    />
+                </v-list-item>
             </v-list>
         </v-menu>
     </v-app-bar>
 </template>
 
 <script>
+    import {mapGetters} from "vuex";
+    import Search from "./pages/Search";
+
     export default {
         name: "AppBar",
+        components: {Search},
         data: () => ({
+            inputData: '',
+            drawer: false,
             links: [
                 {title: 'Products', route: '/products'},
                 {title: 'Info', route: '/info'},
@@ -70,6 +90,40 @@
                 {title: 'Log Out', route: '/'},
             ],
         }),
+        computed: {
+            ...mapGetters({
+                isDarkModeEnabled: 'settings/getIsDarkModeEnabled'
+            }),
+            fullPath: function () {
+                return this.$route.query.link;
+            }
+        },
+        watch: {
+            isDarkModeEnabled: {
+                handler() {
+                    this.$vuetify.theme.dark = this.isDarkModeEnabled
+                },
+                immediate: true
+            },
+            fullPath: function () {
+                if (!this.fullPath?.includes('search')) {
+                    this.inputData = ''
+                }
+            },
+        },
+        methods: {
+            changeDarkMode() {
+                this.$store.commit('settings/setDarkModeEnabled', !this.isDarkModeEnabled)
+            },
+            onEnterPress() {
+                this.$router.push({
+                    path: '/products',
+                    query: {
+                        link: `/ru/search?query=${this.inputData}`
+                    }
+                })
+            }
+        }
     }
 </script>
 
