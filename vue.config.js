@@ -16,6 +16,14 @@ module.exports = {
                 },
                 ws: true,
                 changeOrigin: true,
+            },
+            '^/api/item': {
+                target: 'http://localhost:8003/item',
+                pathRewrite: {
+                    '^/api/item': ''
+                },
+                ws: true,
+                changeOrigin: true,
             }
         }
     },

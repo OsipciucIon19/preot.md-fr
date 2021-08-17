@@ -3,12 +3,6 @@
             app
             flat
     >
-
-        <v-avatar
-                :color="$vuetify.breakpoint.smAndDown ? 'grey darken-1' : 'transparent'"
-                size="32"
-        ></v-avatar>
-
         <v-tabs
                 centered
                 class="ml-n9"
@@ -53,6 +47,11 @@
                         :key="index"
                         :to="item.route"
                 >
+                    <v-icon
+                            class="mr-6"
+                    >
+                        mdi-account
+                    </v-icon>
                     <v-list-item-title>{{ item.title }}</v-list-item-title>
                 </v-list-item>
                 <v-list-item>

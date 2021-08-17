@@ -1,8 +1,5 @@
 <template>
-    <form
-        @submit="onSubmit"
-        @keyup="$emit('changeInput', $event.target.value)"
-    >
+
         <v-text-field
                 :value="searchValue"
                 dense
@@ -14,7 +11,6 @@
                 @keyup.enter="$emit('submitInput',$event.target.value)"
                 @keyup="$emit('changeInput',$event.target.value)"
         ></v-text-field>
-    </form>
 </template>
 
 <script>

@@ -28,8 +28,9 @@
                                         <v-list-item-content>
                                             <v-list-item-title class="text-wrap">
                                                 <router-link
+                                                        style="text-decoration: none; color: inherit;"
                                                         class="child-link"
-                                                        :to="{href:'/products', query: {link: linkChild.link}}"
+                                                        :to="{name:'products', query: {link: linkChild.link}}"
                                                 >
                                                     {{ linkChild.name }}
                                                 </router-link>
