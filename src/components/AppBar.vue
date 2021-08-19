@@ -18,9 +18,10 @@
         </v-tabs>
 
         <Search
-                :search-value="inputData"
+                v-model="search"
+                :items="searchProducts"
+                :loading="isSearchLoading"
                 @submitInput="onEnterPress"
-                @changeInput="inputData = $event"
         />
 
         <v-menu offset-y>
@@ -76,7 +77,7 @@
         components: {Search},
         data: () => ({
             inputData: '',
-            drawer: false,
+            search: '',
             links: [
                 {title: 'Products', route: '/products'},
                 {title: 'Info', route: '/info'},
@@ -91,7 +92,9 @@
         }),
         computed: {
             ...mapGetters({
-                isDarkModeEnabled: 'settings/getIsDarkModeEnabled'
+                isDarkModeEnabled: 'settings/getIsDarkModeEnabled',
+                searchProducts: 'products/getSearchSuggestions',
+                isSearchLoading: 'products/getIsSearchLoading'
             }),
             fullPath: function () {
                 return this.$route.query.link;
@@ -109,16 +112,19 @@
                     this.inputData = ''
                 }
             },
+            search() {
+                this.$store.dispatch('products/searchProducts', this.search)
+            }
         },
         methods: {
             changeDarkMode() {
                 this.$store.commit('settings/setDarkModeEnabled', !this.isDarkModeEnabled)
             },
-            onEnterPress() {
+            onEnterPress(value){
                 this.$router.push({
-                    path: '/products',
+                    name: 'products',
                     query: {
-                        link: `/ru/search?query=${this.inputData}`
+                        link: `/ru/search?query=${value}`
                     }
                 })
             }

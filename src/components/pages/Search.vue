@@ -1,16 +1,20 @@
 <template>
 
-        <v-text-field
-                :value="searchValue"
-                dense
-                flat
-                hide-details
-                rounded
-                solo-inverted
-                class="mr-16"
-                @keyup.enter="$emit('submitInput',$event.target.value)"
-                @keyup="$emit('changeInput',$event.target.value)"
-        ></v-text-field>
+    <v-autocomplete
+            class="mr-16"
+            value="searchValue"
+            label="Search for products"
+            dense
+            flat
+            hide-details
+            hide-no-data
+            item-text="title"
+            item-value="url"
+            :items="items"
+            :loading="loading"
+            :search-input.sync="search"
+            @keydown.enter="$emit('submitInput', search)"
+    ></v-autocomplete>
 </template>
 
 <script>
@@ -18,26 +22,44 @@
         name: "Search",
         model: {
             prop: 'searchValue',
-            event: 'submitInput'
+            event: 'changeSearch'
         },
         props: {
+            items:{
+                type: Array,
+                required: true,
+            },
+            loading:{
+                type : Boolean,
+                required : false,
+                default: false,
+            },
             searchValue: {
                 type: String,
                 required: false,
                 default: '',
             },
         },
-        methods: {
-            onSubmit: function (e) {
-                e.preventDefault();
-                this.$emit('submitInput', e.target.value);
+        data :() => ({
+            search:''
+        }),
+        watch: {
+            search(){
+                console.log(this.search);
+                this.$emit('changeSearch', this.search);
+            },
+            searchValue : {
+                immediate : true,
+                handler() {
+                    this.search = this.searchValue;
+                }
             }
-        }
+        },
     }
 </script>
 
 <style scoped>
-    .v-text-field {
+    .v-autocomplete {
         width: 20em;
     }
 </style>
