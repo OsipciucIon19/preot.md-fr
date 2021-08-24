@@ -23,25 +23,25 @@
             >
                 <v-carousel-item
                         v-for="(image,i) in item.img"
-                        :key="i"
+                        :key="image + i"
                         :src="image"
                         reverse-transition="fade-transition"
                         transition="fade-transition"
                 ></v-carousel-item>
             </v-carousel>
-            <div>
+            <div style="white-space: pre-wrap">
                 {{item.description}}
             </div>
-            <div v-for="(location, j) in item.location" :key="j">
-                {{location.name}} {{j}}
+            <div v-for="(location, i) in item.location" :key="location + i">
+                {{location.name}}
             </div>
-            <div v-for="(mainFeatures, i) in item.mainFeatures" :key="i">
+            <div v-for="(mainFeatures) in item.mainFeatures" :key="mainFeatures.name">
                 {{mainFeatures.name}} ----- {{mainFeatures.value}}
             </div>
             <div>
                 {{item.price}}
             </div>
-            <div v-for="(secondaryFeatures, i) in item.secondaryFeatures" :key="i">
+            <div v-for="(secondaryFeatures) in item.secondaryFeatures" :key="secondaryFeatures.name">
                 {{secondaryFeatures.name}} ----- {{secondaryFeatures.value}}
             </div>
             <div>

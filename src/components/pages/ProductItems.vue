@@ -1,8 +1,8 @@
 <template>
     <v-card
             link
-            class="mx-auto my-5"
-            max-width="374"
+            class="mx-1 my-5"
+            max-width="300"
     >
         <router-link
                 style="text-decoration: none; color: inherit;"

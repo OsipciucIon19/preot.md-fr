@@ -1,44 +1,53 @@
 <template>
-  <v-app id="inspire">
-    <AppBar/>
-    <v-main class="lighten-3">
-      <v-container>
-        <v-row>
-          <v-col
-                  cols="9"
-                  sm="9"
-          >
-            <v-sheet
-                    min-height="70vh"
-                    rounded="lg"
-            >
-              <AppContent/>
-            </v-sheet>
-          </v-col>
+    <v-app id="inspire">
+        <AppBar/>
+        <v-main class="lighten-3">
+            <v-container fluid>
+                <v-row>
+                    <v-col
+                        cols="12"
+                        sm="12"
+                        lg="9"
+                    >
+                        <v-sheet
+                            min-height="70vh"
+                            rounded="lg"
+                        >
+                            <AppContent/>
+                        </v-sheet>
+                    </v-col>
 
-          <v-col
-                  cols="3"
-                  sm="3"
-          >
-            <v-sheet
-                    rounded="lg"
-                    min-height="268"
-            >
-              <Categories/>
-            </v-sheet>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-main>
-  </v-app>
+                    <v-col
+                        cols="3"
+                        class="hidden-md-and-down"
+                    >
+                        <v-sheet
+                            rounded="lg"
+                            min-height="268"
+                        >
+                            <Categories class="hidden-md-and-down"/>
+                        </v-sheet>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </v-main>
+    </v-app>
 </template>
 
 <script>
-  import AppContent from "./components/AppContent";
-  import AppBar from "./components/AppBar";
-  import Categories from "./components/Categories";
+import AppContent from "./components/AppContent";
+import AppBar from "./components/AppBar";
+import Categories from "./components/Categories";
 
-  export default {
-    components: {Categories, AppBar, AppContent},
-  }
+export default {
+    components: {
+        Categories,
+        AppBar,
+        AppContent
+    },
+}
 </script>
+
+<style scoped>
+
+</style>

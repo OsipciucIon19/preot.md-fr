@@ -1,3 +1,5 @@
+import {encode} from 'js-base64'
+
 export default {
     namespaced: true,
     state: {
@@ -17,14 +19,17 @@ export default {
             store.commit('mutateIsLoading', true);
 
             let appender = link.includes('?') ? '&' : '?';
-            let params = btoa(`${link}${appender}page=${page}`);
+            let params = encode(`${link}${appender}page=${page}`);
 
-            const products = await fetch(`/api/products?linkBase64=${params}`);
+            let products = await fetch(`/api/products?linkBase64=${params}`);
+            products = await products.json();
+
+            store.commit('productsHistory/mutateItem', products, {root: true});
 
             if (page > 1) {
-                store.commit('mutateNewList', await products.json());
+                store.commit('mutateNewList', products);
             } else {
-                store.commit('mutateList', await products.json());
+                store.commit('mutateList', products);
             }
             store.commit('mutateIsLoading', false);
         },
