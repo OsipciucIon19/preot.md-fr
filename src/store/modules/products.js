@@ -1,4 +1,5 @@
 import {encode} from 'js-base64'
+import {fetchData} from '../../api/999'
 
 export default {
     namespaced: true,
@@ -21,8 +22,10 @@ export default {
             let appender = link.includes('?') ? '&' : '?';
             let params = encode(`${link}${appender}page=${page}`);
 
-            let products = await fetch(`/api/products?linkBase64=${params}`);
-            products = await products.json();
+            let products = fetchData.productList(params);
+            // let products = await fetch(`/api/products?linkBase64=${params}`)
+            // console.log(await products.json());
+            products = (await products).data;
 
             store.commit('productsHistory/mutateItem', products, {root: true});
 
@@ -35,8 +38,9 @@ export default {
         },
         async searchProducts(store, payload){
             store.commit('mutateIsSearchLoading', true);
-            const result = await fetch(`/api/suggestions?query=${payload}`);
-            store.commit('mutateSearchList', await result.json());
+
+            const result = fetchData.suggestions(payload);
+            store.commit('mutateSearchList', (await result).data);
             store.commit('mutateIsSearchLoading', false);
         }
     },

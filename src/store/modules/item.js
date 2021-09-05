@@ -1,3 +1,4 @@
+import {fetchData} from "../../api/999";
 
 export default {
     namespaced: true,
@@ -15,10 +16,10 @@ export default {
         async loadItem(store, payload) {
             store.commit('mutateIsLoading', true);
 
-            const item = await fetch(`/api/item?link=/ru/${payload}`);
+            let item = fetchData.item(`/ru/${payload}`);
+            item = (await item).data
 
-            store.commit('mutateItem', await item.json());
-
+            store.commit('mutateItem', item);
             store.commit('mutateIsLoading', false);
         }
     },
