@@ -4,6 +4,7 @@ import vuetify from './plugins/vuetify'
 import router from "./routes";
 import store from "./store";
 import "./plugins/infiniteScroll"
+import './guards'
 
 Vue.config.productionTip = false;
 

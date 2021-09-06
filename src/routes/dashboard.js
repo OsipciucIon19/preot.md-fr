@@ -7,7 +7,7 @@ import Profile from "../components/pages/Profile";
 import ProductDetails from "../components/pages/ProductDetails";
 
 export default [
-    {name: 'home', path: '/', component: Products, props: (routes) => ({link: routes.query.link})},
+    {name: 'productsHome', path: '/', component: Products, props: (routes) => ({link: routes.query.link})},
     {name: 'info', path: '/info', component: Info},
     {name: 'contacts', path: '/contacts', component: Contacts},
     {name: 'cart', path: '/cart', component: Cart},

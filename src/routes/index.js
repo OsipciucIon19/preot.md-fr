@@ -3,7 +3,7 @@ import Vue from 'vue'
 import Dashboard from "../layouts/Dashboard";
 import dashboardRoutes from "./dashboard"
 import Auth from "../layouts/Auth";
-import authRoutes from "./auth"
+import authRoutes from "./auth";
 
 Vue.use(VueRouter);
 

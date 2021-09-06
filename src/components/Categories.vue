@@ -27,7 +27,7 @@
                                             <router-link
                                                 style="text-decoration: none; color: inherit;"
                                                 class="child-link"
-                                                :to="{name:'products', query: {link: child.link}}"
+                                                :to="{name:'productsHome', query: {link: child.link}}"
                                             >
                                                 {{ child.name }}
                                             </router-link>
