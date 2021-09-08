@@ -7,13 +7,15 @@ export default {
         list: [],
         isLoading: false,
         search: {},
-        isSearchLoading: false
+        isSearchLoading: false,
+        isError: false
     },
     getters: {
         getList: (state) => state.list,
         getIsLoading: (state) => state.isLoading,
         getSearchSuggestions: (state) => state.search?.suggestions ?? [],
-        getIsSearchLoading: (state) => state.isSearchLoading
+        getIsSearchLoading: (state) => state.isSearchLoading,
+        getIsError: (state) => state.isError
     },
     actions: {
         async loadProducts(store, {link, page}) {
@@ -23,8 +25,6 @@ export default {
             let params = encode(`${link}${appender}page=${page}`);
 
             let products = fetchData.productList(params);
-            // let products = await fetch(`/api/products?linkBase64=${params}`)
-            // console.log(await products.json());
             products = (await products).data;
 
             store.commit('productsHistory/mutateItem', products, {root: true});
@@ -36,13 +36,17 @@ export default {
             }
             store.commit('mutateIsLoading', false);
         },
-        async searchProducts(store, payload){
+        async searchProducts(store, payload) {
             store.commit('mutateIsSearchLoading', true);
 
             const result = fetchData.suggestions(payload);
+
             store.commit('mutateSearchList', (await result).data);
             store.commit('mutateIsSearchLoading', false);
-        }
+        },
+        setIsError(store) {
+            store.commit('mutateIsError', true)
+        },
     },
     mutations: {
         mutateList(state, payload) {
@@ -54,11 +58,14 @@ export default {
         mutateNewList(state, payload) {
             state.list = state.list.concat(payload);
         },
-        mutateIsSearchLoading(state, payload){
+        mutateIsSearchLoading(state, payload) {
             state.isSearchLoading = payload;
         },
         mutateSearchList(state, payload) {
             state.search = payload;
         },
+        mutateIsError(state, payload) {
+            state.isError = payload;
+        }
     }
 }

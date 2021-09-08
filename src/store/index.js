@@ -9,7 +9,8 @@ const dataState = createPersistedState({
     paths: [
         'categories.list',
         'settings.isDarkModeEnabled',
-        'productsHistory.items'
+        'productsHistory.items',
+        'auth',
     ]
 });
 

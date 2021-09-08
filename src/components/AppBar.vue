@@ -58,7 +58,9 @@
                             <v-list-item-title>{{ item.title }}</v-list-item-title>
                         </v-list-item>
                         <v-list-item :to="{name: 'login'}">
-                            <v-list-item-title><div @click="logout">Log Out</div></v-list-item-title>
+                            <v-list-item-title>
+                                <div @click="logout">Log Out</div>
+                            </v-list-item-title>
                         </v-list-item>
                         <v-list-item>
                             <v-switch
@@ -110,6 +112,7 @@
 <script>
 import {mapGetters} from "vuex";
 import Search from "./pages/Search";
+import eventBus from "../eventBus";
 
 export default {
     name: "AppBar",
@@ -153,6 +156,7 @@ export default {
         },
         search() {
             this.$store.dispatch('products/searchProducts', this.search)
+                .catch((e) => eventBus.$emit('error', e.response.data.message))
         }
     },
     methods: {
@@ -161,7 +165,7 @@ export default {
         },
         onEnterPress(value) {
             this.$router.push({
-                name: 'products',
+                name: 'productsHome',
                 query: {
                     link: `/ru/search?query=${value}`
                 }
@@ -194,7 +198,7 @@ export default {
 }
 
 #sign-up {
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0, 0, 0, 0.1);
     padding: 7px;
     border-radius: 5px;
 }

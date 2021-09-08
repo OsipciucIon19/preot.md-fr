@@ -1,11 +1,15 @@
 export default {
     namespaced: true,
     state: {
-        isAuthorised: false
+        isAuthorised: false,
+        username: ''
     },
     getters: {
         getIsAuthorised(state) {
             return state.isAuthorised
+        },
+        getUsername(state) {
+            return state.username
         }
     },
     actions: {

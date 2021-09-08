@@ -1,12 +1,15 @@
 <template>
     <div>
         <RouterView/>
+        <ErrorMessage />
     </div>
 </template>
 
 <script>
+import ErrorMessage from "./ErrorMessage";
 export default {
-    name: "Content"
+    name: "Content",
+    components: {ErrorMessage},
 }
 </script>
 

@@ -13,7 +13,6 @@ const routes = [
         redirect: "/products"
     },
     {
-        name: "products",
         path: "/products",
         component: Dashboard,
         children: dashboardRoutes,

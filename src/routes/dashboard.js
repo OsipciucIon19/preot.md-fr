@@ -13,5 +13,5 @@ export default [
     {name: 'cart', path: '/cart', component: Cart},
     {name: 'settings', path: '/settings', component: Settings},
     {name: 'profile', path: '/profile', component: Profile},
-    {name: 'item', path: '/item/:id', component: ProductDetails, props: true},
+    {name: 'item', path: '/item/:id', component: ProductDetails, props: true, access: ['admin', 'user']},
 ]
