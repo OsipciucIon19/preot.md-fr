@@ -20,6 +20,7 @@
 
 <script>
 import eventBus from "../eventBus";
+import {ERROR_MESSAGE} from "../constants/eventBus";
 
 export default {
     name: "ErrorMessage",
@@ -31,11 +32,11 @@ export default {
     },
     mounted() {
         let timeOutId
-        eventBus.$on('error', (e) => {
+        eventBus.$on(ERROR_MESSAGE, (errorMessage) => {
             clearTimeout(timeOutId)
 
             this.snackbar = true;
-            this.text = e;
+            this.text = errorMessage;
 
             timeOutId = setTimeout(() => {
                 this.snackbar = false;

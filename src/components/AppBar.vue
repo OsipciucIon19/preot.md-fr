@@ -113,6 +113,7 @@
 import {mapGetters} from "vuex";
 import Search from "./pages/Search";
 import eventBus from "../eventBus";
+import {ERROR_MESSAGE} from "../constants/eventBus";
 
 export default {
     name: "AppBar",
@@ -156,7 +157,7 @@ export default {
         },
         search() {
             this.$store.dispatch('products/searchProducts', this.search)
-                .catch((e) => eventBus.$emit('error', e.response.data.message))
+                .catch((e) => eventBus.$emit(ERROR_MESSAGE, e.response.data.message))
         }
     },
     methods: {
