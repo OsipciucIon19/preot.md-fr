@@ -1,7 +1,7 @@
 <template>
-    <div>
-        Contacts
-    </div>
+  <div>
+    Contacts
+  </div>
 </template>
 
 <script>

@@ -1,8 +1,8 @@
 <template>
-    <div>
-        <RouterView/>
-        <ErrorMessage />
-    </div>
+  <div>
+    <RouterView />
+    <ErrorMessage />
+  </div>
 </template>
 
 <script>

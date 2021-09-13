@@ -1,23 +1,22 @@
 <template>
-
-    <v-autocomplete
-        full-width
-        class="mx-8"
-        value="searchValue"
-        color="inherit"
-        background-color="inherit"
-        label="Search here..."
-        dense
-        flat
-        hide-details
-        hide-no-data
-        item-text="title"
-        item-value="url"
-        :items="items"
-        :loading="loading"
-        :search-input.sync="search"
-        @keydown.enter="$emit('submitInput', search)"
-    ></v-autocomplete>
+  <v-autocomplete
+    full-width
+    class="mx-8"
+    value="searchValue"
+    color="inherit"
+    background-color="inherit"
+    label="Search here..."
+    dense
+    flat
+    hide-details
+    hide-no-data
+    item-text="title"
+    item-value="url"
+    :items="items"
+    :loading="loading"
+    :search-input.sync="search"
+    @keydown.enter="$emit('submitInput', search)"
+  />
 </template>
 
 <script>
