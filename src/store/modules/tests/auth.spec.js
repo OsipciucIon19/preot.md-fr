@@ -20,16 +20,13 @@ describe('auth', () => {
     it('should log in a new user', function () {
         const exampleUsername = 'test-username';
 
-        store.dispatch('auth/login', exampleUsername)
+        store.dispatch('auth/login', {username: exampleUsername})
 
         expect(store.getters['auth/getUsername']).toMatch(exampleUsername)
         expect(store.getters['auth/getIsAuthorised']).toBeTruthy()
     });
 
     it('should log out a user', function () {
-        // store.commit('auth/mutateUsername', null)
-        // store.commit('auth/mutateIsAuthorised', false)
-
         store.dispatch('auth/logout')
 
         expect(store.getters['auth/getUsername']).toBe(null)

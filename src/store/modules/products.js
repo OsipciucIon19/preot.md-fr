@@ -6,7 +6,7 @@ export default {
     state: {
         list: [],
         isLoading: false,
-        search: {},
+        search: [],
         isSearchLoading: false,
         isError: false
     },
