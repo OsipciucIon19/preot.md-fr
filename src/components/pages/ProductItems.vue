@@ -93,4 +93,8 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
+
+    .v-card {
+      width: 300px;
+    }
 </style>
