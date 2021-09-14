@@ -1,10 +1,10 @@
 export default {
     namespaced: true,
     state: {
-        items: {}
+        items: []
     },
     getters: {
-        getItem: (state) => (id) => state.items[id]
+
     },
     actions: {
 
@@ -23,7 +23,7 @@ export default {
                 } else {
                     priceList.push(price)
                 }
-
+                console.log(item.link)
                 state.items[item.link] = {price: priceList};
             }
         }
