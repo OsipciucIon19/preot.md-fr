@@ -1,5 +1,5 @@
-import axios from "axios";
+import {create} from "axios";
 
-export default axios.create({
+export default create({
     baseURL: 'http://999.appetit.md/api'
 })
