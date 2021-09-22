@@ -1,4 +1,9 @@
-import {fetchData} from "../../api/999";
+import {fetchItem} from "../../api/999";
+
+export const state = {
+    item: {},
+    isLoading: false
+}
 
 export default {
     namespaced: true,
@@ -16,7 +21,7 @@ export default {
         async loadItem(store, payload) {
             store.commit('mutateIsLoading', true);
 
-            let item = fetchData.item(`/ru/${payload}`);
+            let item = fetchItem(`/ru/${payload}`);
             item = (await item).data
 
             store.commit('mutateItem', item);

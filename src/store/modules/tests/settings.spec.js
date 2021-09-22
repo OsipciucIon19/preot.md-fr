@@ -1,24 +1,21 @@
-import settings from "../settings";
-import Vue from "vue";
+import settings from '../settings';
 import Vuex from "vuex";
+import Vue from "vue";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 const store = new Vuex.Store({
-     modules: {settings}
+    modules: {
+        settings
+    }
 })
 
-jest.mock('../../../api/999', () => ({
-    testFunction: jest.fn()
-}))
-
 describe("settings", () => {
-    it("should have default value false", () => {
-        expect(store.getters['settings/getIsDarkModeEnabled']).toBe(false)
-    });
-
+    it("should have default value", () => {
+        expect(store.getters['settings/getIsDarkModeEnabled']).toBe(false);
+    })
     it("should change dark mode to true", () => {
-        store.commit('settings/setDarkModeEnabled', true)
-        expect(store.getters['settings/getIsDarkModeEnabled']).toBeTruthy()
+        store.commit('settings/setDarkModeEnabled', true);
+        expect(store.getters['settings/getIsDarkModeEnabled']).toBeTruthy();
     })
 })

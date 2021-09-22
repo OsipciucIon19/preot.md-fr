@@ -1,4 +1,9 @@
-import {fetchData} from "../../api/999";
+import {fetchCategories} from "../../api/999";
+
+export const state = {
+    list: [],
+    isLoading: false
+}
 
 export default {
     namespaced: true,
@@ -14,7 +19,7 @@ export default {
         async fetch({commit}) {
             commit('mutateIsLoading', true);
 
-            let result = fetchData.categories();
+            let result = fetchCategories();
             result = (await result).data;
 
             commit('mutateList', result);

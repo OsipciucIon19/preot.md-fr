@@ -6,7 +6,12 @@
 
 <script>
 export default {
-    name: "App"
+    name: "App",
+    mounted() {
+        for (const product of Object.values(this.$store.state.productsHistory.items)) {
+            if (product.price.length > 1) console.log(product)
+        }
+    }
 }
 </script>
 
